@@ -1,7 +1,21 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView} from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Image} from 'react-native';
+import GetJSON from './classes/Utility/GetJSON';
 
 export default class App extends React.Component {
+
+  componentDidMount(){
+    var request = new GetJSON("https://pocketschool.altervista.org/api/api.php", function(){
+      console.log("onComplete");
+    });
+    request.getData({
+      action: "getPosts",
+      data: {
+        group_id: 1
+      }
+    });
+  }
+
   render() {
     return (
       <ScrollView>
